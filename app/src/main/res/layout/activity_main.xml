@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activities.MainActivity">
+        tools:context=".Activities.MainActivity"
+        android:id="@+id/main_layout">
 
         <LinearLayout
             android:id="@+id/app_bar_layout"
@@ -58,11 +59,12 @@
         </LinearLayout>
 
         <FrameLayout
+            android:id="@+id/root_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/banner_ads"
             app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
             android:orientation="vertical">
 
@@ -667,8 +669,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="gone">
 
-
         </ProgressBar>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/banner_ads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/root_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:adSize="BANNER"
+            app:adUniId="ca-app-pub-3940256099942544/6300978111">
+
+        </com.google.android.gms.ads.AdView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

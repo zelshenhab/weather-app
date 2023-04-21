@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
@@ -13,12 +14,16 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.weatherapp.Models.WeatherModel
 import com.example.weatherapp.R
 import com.example.weatherapp.Utilites.ApiUtilities
 import com.example.weatherapp.databinding.ActivityMainBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -26,8 +31,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.http.Body
+import java.math.RoundingMode
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
 import java.util.Date
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,6 +56,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
+
+
+        MobileAds.initialize(this){
+
+        }
+
+        val adRequest= AdRequest.Builder().build()
+
+        binding.bannerAds.loadAd(adRequest)
+
 
         fusedLocationProvider=LocationServices.getFusedLocationProviderClient(this)
 
@@ -95,6 +114,7 @@ class MainActivity : AppCompatActivity() {
 
         ApiUtilities.getApiInterface()?.getCityWeatherData(city,apiKey)?.enqueue(
             object :Callback<WeatherModel>{
+                @RequiresApi(Build.VERSION_CODES.O)
                 override fun onResponse(
                     call: Call<WeatherModel>,
                     response: Response<WeatherModel>
@@ -131,6 +151,7 @@ class MainActivity : AppCompatActivity() {
 
         ApiUtilities.getApiInterface()?.getCurrentWeatherData(latitude,longitude,apiKey)
             ?.enqueue(object :Callback<WeatherModel>{
+                @RequiresApi(Build.VERSION_CODES.O)
                 override fun onResponse(
                     call: Call<WeatherModel>,
                     response: Response<WeatherModel>
@@ -221,6 +242,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun requestPermissions() {
+        TODO("Not yet implemented")
+    }
+
     private fun requestPermission(){
 
         ActivityCompat.requestPermissions(
@@ -288,6 +313,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setData(body:WeatherModel){
 
         binding.apply {
@@ -296,10 +322,177 @@ class MainActivity : AppCompatActivity() {
 
             dateTime.text=currentDate.toString()
 
-            maxTemp
+            maxTemp.text= "Max "+k2c(body?.main?.temp_max!!)+"°"
+
+            minTemp.text="Min "+k2c(body?.main?.temp_min!!)+"°"
+
+            temp.text=""+k2c(body?.main?.temp!!)+"°"
+
+            weatherTitle.text= body.weather[0].main
+
+            sunriseValue.text= ts2td(body.sys.sunrise.toLong())
+
+            sunsetValue.text=ts2td(body.sys.sunset.toLong())
+
+            pressureValue.text=body.main.pressure.toString()
+
+            humidityValue.text=body.main.humidity.toString()+"%"
+
+            tempFValue.text=""+ k2c(body.main.temp)!!.times(1.8).plus(32)
+                .roundToInt()+""
+
+            citySearch.setText(body.name)
+
+            feelsLike.text=""+k2c(body?.main?.feels_like!!)+"°"
+
+            windValue.text=body.wind.speed.toString()+"m/s"
+
+            groundValue.text=body.main.grnd_level.toString()
+
+            seaValue.text=body.main.sea_level.toString()
+
+            countryValue.text=body.sys.country
 
         }
 
+        updateUI(body.weather[0].id)
+
+    }
+
+    private fun updateUI(id: Int) {
+
+        binding.apply {
+
+
+            when(id){
+
+                in 200..232->{
+
+                    weatherImg.setImageResource(R.drawable.ic_storm_weather)
+
+                    mainLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.thunderstrom_bg)
+
+                    optionsLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.thunderstrom_bg)
+
+                }
+                in 300..321->{
+
+                    weatherImg.setImageResource(R.drawable.ic_few_clouds)
+
+                    mainLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.drizzle_bg)
+
+                    optionsLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.drizzle_bg)
+
+                }
+                in 500..531->{
+
+                    weatherImg.setImageResource(R.drawable.ic_rainy_weather)
+
+                    mainLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.rain_bg)
+
+                    optionsLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.rain_bg)
+
+                }
+                in 600..622->{
+
+                    weatherImg.setImageResource(R.drawable.ic_snow_weather)
+
+                    mainLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.snow_bg)
+
+                    optionsLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.snow_bg)
+
+                }
+                in 701..781->{
+
+                    weatherImg.setImageResource(R.drawable.ic_broken_clouds)
+
+                    mainLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.atmosphere_bg)
+
+                    optionsLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.atmosphere_bg)
+
+                }
+
+                800->{
+
+                    weatherImg.setImageResource(R.drawable.ic_clear_day)
+
+                    mainLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.clear_bg)
+
+                    optionsLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.clear_bg)
+
+                }
+
+                in 801..804->{
+
+                    weatherImg.setImageResource(R.drawable.ic_cloudy_weather)
+
+                    mainLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.clouds_bg)
+
+                    optionsLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.clouds_bg)
+
+                }
+
+                else->{
+
+                    weatherImg.setImageResource(R.drawable.ic_unknown)
+
+                    mainLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.unknown_bg)
+
+                    optionsLayout.background=ContextCompat
+                        .getDrawable(this@MainActivity,R.drawable.unknown_bg)
+
+                }
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun ts2td(ts: Long): String {
+
+        val localTime=ts.let {
+
+            Instant.ofEpochSecond(it)
+                .atZone(ZoneId.systemDefault())
+                .toLocalTime()
+        }
+
+        return localTime.toString()
+
+    }
+
+    private fun k2c(t: Double): Double? {
+
+
+        var intTemp=t
+
+        intTemp=intTemp.minus(273)
+
+        return intTemp.toBigDecimal().setScale(1,RoundingMode.UP).toDouble()
     }
 
 

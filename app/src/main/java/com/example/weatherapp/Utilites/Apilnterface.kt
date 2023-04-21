@@ -12,7 +12,7 @@ interface Apilnterface {
        @Query("lat") lat:String,
        @Query("lon") lon:String,
        @Query("APPID") appid:String
-       ) :Call<WeatherModel>
+       ):Call<WeatherModel>
 
     @GET("weather")
     fun getCityWeatherData(
