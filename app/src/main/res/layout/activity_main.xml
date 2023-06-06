@@ -41,7 +41,6 @@
 
             </EditText>
 
-
             <ImageView
                 android:id="@+id/current_Location"
                 android:layout_width="48dp"
@@ -54,7 +53,6 @@
                 android:src="@drawable/ic_baseline_my_location_24">
 
             </ImageView>
-
 
         </LinearLayout>
 
@@ -76,7 +74,6 @@
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
-
             <TextView
                 android:id="@+id/date_time"
                 android:layout_width="wrap_content"
@@ -90,13 +87,11 @@
 
             </TextView>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="5dp">
-
 
                 <TextView
                     android:id="@+id/max_temp"
@@ -105,7 +100,6 @@
                     android:text="Max Temp"
                     android:layout_marginStart="25dp"
                     android:textColor="@color/white">
-
 
                 </TextView>
 
@@ -119,9 +113,7 @@
 
                 </TextView>
 
-
             </LinearLayout>
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -145,9 +137,7 @@
                         android:textSize="85sp"
                         android:textColor="@color/white">
 
-
                     </TextView>
-
 
                     <TextView
                         android:id="@+id/feels_like"
@@ -160,9 +150,7 @@
 
                     </TextView>
 
-
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -173,7 +161,6 @@
                     android:orientation="vertical"
                     android:layout_marginEnd="25dp"
                     android:gravity="center">
-
 
                     <ImageView
                         android:id="@+id/weather_img"
@@ -195,19 +182,15 @@
 
                     </TextView>
 
-
                 </LinearLayout>
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
                 app:cardCornerRadius="25dp">
-
 
                 <LinearLayout
                     android:id="@+id/options_layout"
@@ -216,7 +199,6 @@
                     android:orientation="vertical"
                     android:padding="10dp"
                     android:gravity="center">
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -240,7 +222,6 @@
                                 android:src="@drawable/pressure"
                                 app:tint="@color/white">
 
-
                             </ImageView>
 
                             <TextView
@@ -255,7 +236,6 @@
 
                             </TextView>
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -263,9 +243,7 @@
                                 android:textColor="@color/white"
                                 android:text="Pressure">
 
-
                             </TextView>
-
 
                         </LinearLayout>
 
@@ -285,7 +263,6 @@
                                 android:src="@drawable/humidity"
                                 app:tint="@color/white">
 
-
                             </ImageView>
 
                             <TextView
@@ -300,7 +277,6 @@
 
                             </TextView>
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -308,9 +284,7 @@
                                 android:textColor="@color/white"
                                 android:text="Humidity">
 
-
                             </TextView>
-
 
                         </LinearLayout>
 
@@ -330,7 +304,6 @@
                                 android:src="@drawable/wind"
                                 app:tint="@color/white">
 
-
                             </ImageView>
 
                             <TextView
@@ -345,7 +318,6 @@
 
                             </TextView>
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -353,12 +325,9 @@
                                 android:textColor="@color/white"
                                 android:text="Wind">
 
-
                             </TextView>
 
-
                         </LinearLayout>
-
 
                     </LinearLayout>
 
@@ -384,7 +353,6 @@
                                 android:src="@drawable/sunrise"
                                 app:tint="@color/white">
 
-
                             </ImageView>
 
                             <TextView
@@ -399,7 +367,6 @@
 
                             </TextView>
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -407,9 +374,7 @@
                                 android:textColor="@color/white"
                                 android:text="Sunrise">
 
-
                             </TextView>
-
 
                         </LinearLayout>
 
@@ -429,7 +394,6 @@
                                 android:src="@drawable/sunset"
                                 app:tint="@color/white">
 
-
                             </ImageView>
 
                             <TextView
@@ -444,7 +408,6 @@
 
                             </TextView>
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -452,9 +415,7 @@
                                 android:textColor="@color/white"
                                 android:text="Sunset">
 
-
                             </TextView>
-
 
                         </LinearLayout>
 
@@ -474,7 +435,6 @@
                                 android:src="@drawable/temperature"
                                 app:tint="@color/white">
 
-
                             </ImageView>
 
                             <TextView
@@ -489,7 +449,6 @@
 
                             </TextView>
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -497,12 +456,9 @@
                                 android:textColor="@color/white"
                                 android:text="°F">
 
-
                             </TextView>
 
-
                         </LinearLayout>
-
 
                     </LinearLayout>
 
@@ -528,7 +484,6 @@
                                 android:src="@drawable/ground"
                                 app:tint="@color/white">
 
-
                             </ImageView>
 
                             <TextView
@@ -543,7 +498,6 @@
 
                             </TextView>
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -551,9 +505,7 @@
                                 android:textColor="@color/white"
                                 android:text="Ground">
 
-
                             </TextView>
-
 
                         </LinearLayout>
 
@@ -573,7 +525,6 @@
                                 android:src="@drawable/water"
                                 app:tint="@color/white">
 
-
                             </ImageView>
 
                             <TextView
@@ -588,7 +539,6 @@
 
                             </TextView>
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -596,9 +546,7 @@
                                 android:textColor="@color/white"
                                 android:text="Sea">
 
-
                             </TextView>
-
 
                         </LinearLayout>
 
@@ -618,7 +566,6 @@
                                 android:src="@drawable/country"
                                 app:tint="@color/white">
 
-
                             </ImageView>
 
                             <TextView
@@ -633,7 +580,6 @@
 
                             </TextView>
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -647,15 +593,11 @@
 
                         </LinearLayout>
 
-
                     </LinearLayout>
-
 
                 </LinearLayout>
 
-
             </androidx.cardview.widget.CardView>
-
 
         </LinearLayout>
 
@@ -670,9 +612,6 @@
             android:visibility="gone">
 
         </ProgressBar>
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
