@@ -17,7 +17,7 @@
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constrainedTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
@@ -680,7 +680,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:adSize="BANNER"
-            app:adUniId="ca-app-pub-3940256099942544/6300978111">
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111">
 
         </com.google.android.gms.ads.AdView>
 
